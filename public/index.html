@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="config-form">
+
+        <h1 id="titulo">Login - Voluntáriados</h1>
+
+        <label>Email</label>
+        <input type="text" id="email">
+        <br>
+        <label>Senha</label>
+        <input type="password" id="senha">
+        <br>
+        <input class="botao" type="button" onclick="fazerLogin()" value="Logar">
+        <br><br>
+
+        <a href="cadastro.html">Ainda não possui um cadástro? faça agora!</a>
+
+    </div>
+
+    <script>
+        function fazerLogin() {
+            const email = document.getElementById("email").value
+            const senha = document.getElementById("senha").value
+
+            fetch(`pessoas/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    //Busca as pessoas cujo nome e idade se concidem com os valores digitados
+                    //Esse (p) seria o parametro do find (Procurar) Função CallBack
+                    const pessoas = data.find(p => p.email === email && p.senha == senha);
+
+                    if (pessoas) {
+                        window.location.href = "index.html"
+                    } else {
+                        alert('Email ou senha Incorretos')
+                    }
+                })
+        }
+    </script>
+</body>
+
+</html>

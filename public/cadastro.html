@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="config-form">
+        <label>Nome</label>
+        <input type="text" id="nome">
+        <br>
+        <label>Sobrenome</label>
+        <input type="text" id="sobrenome">
+        <br>
+        <label>Usuário(email)</label>
+        <input type="text" id="emailCadastrado" placeholder="Usuario@Email.com">
+        <br>
+        <label>Senha</label>
+        <input type="password" id="senha">
+        <br>
+        <label>Telefone</label>
+        <input type="tel" id="telefone" placeholder="(99) 99999-9999">
+
+        <br>
+        <label>Área de interesse</label>
+        <input list="areas" id="opcoesInteresse" />
+        <datalist id="areas">
+            <option value="Animais e Meio Ambiente">
+            <option value="Cultura e Educação">
+            <option value="Esportes">
+            <option value="Turismo Social">
+            <option value="Trabalho voluntário à distância">
+        </datalist>
+        <br>
+        <label>Disponibilidade de tempo</label>
+        <input list="tempo" id="disponibilidadeTempo">
+        <datalist id="tempo">
+            <option value="15 minutos">
+            <option value="30 minutos">
+            <option value="1 hora">
+            <option value="2 horas">
+            <option value="3 horas">
+            <option value="4 horas">
+            <option value="5 horas">
+            <option value="6 horas">
+            <option value="7 horas">
+            <option value="8 horas">
+        </datalist>
+        <br>
+        <label>Experiência anterior em voluntariado</label>
+        <input type="text" id="experiencia">
+        <br>
+
+        <label>Informações adicionais</label>
+        <br>
+        <textarea id="informacoesAdicionais" cols="30" rows="3"></textarea>
+
+        <br><br>
+        <input class="botao" type="button" onclick="enviarDados()" value="Enviar">
+        <br><br>
+
+        <a href="index.html">Já possui uma conta? Faça o login!</a>
+        <br>
+
+    </div> 
+        <script>
+            function enviarDados() {
+                var form1 = document.getElementById("nome").value;
+                var form2 = document.getElementById("sobrenome").value;
+                var form3 = document.getElementById("emailCadastrado").value;
+                var form4 = document.getElementById("senha").value;
+                var form5 = document.getElementById("telefone").value;
+                var form6 = document.getElementById("opcoesInteresse").value;
+                var form7 = document.getElementById("disponibilidadeTempo").value;
+                var form8 = document.getElementById("experiencia").value;
+
+                var validar = "";
+
+                // Verifique se os campos de entrada estão vazios
+                if (form1 === "" || form2 === "" || form3 === "" || form4 === "" || form5 === "" || form6 === "" || form7 === "" || form8 === "") {
+                    // Se algum campo estiver vazio, impeça que o formulário seja enviado
+                    alert("Por favor, preencha todos os campos.");
+                    return false;
+                    validar = "";
+                }
+                // Se todos os campos estiverem preenchidos, permita que o formulário seja enviado
+                else {
+                    const nome = document.getElementById('nome').value;
+                    const sobrenome = document.getElementById('sobrenome').value;
+                    const email = document.getElementById('emailCadastrado').value;
+                    const senha = document.getElementById('senha').value;
+                    const telefone = document.getElementById('telefone').value;
+                    const areainteresse = document.getElementById('opcoesInteresse').value;
+                    const tempo = document.getElementById('disponibilidadeTempo').value;
+                    const experiencia = document.getElementById('experiencia').value;
+                    const informacoesAdicionais = document.getElementById('informacoesAdicionais').value;
+
+
+                    fetch(`pessoas/${id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            nome: nome, sobrenome: sobrenome, email: email, senha: senha, telefone: telefone,
+                            areainteresse: areainteresse, tempo: tempo, experiencia: experiencia, informacoesAdicionais: informacoesAdicionais
+                        })
+                    })
+                        .then(response => response.json())
+                }
+            }
+        </script>
+</body>
+
+</html>
