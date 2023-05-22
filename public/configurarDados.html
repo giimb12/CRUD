@@ -77,7 +77,7 @@
         //GET
         function buscarDados() {
             const idProcura = document.getElementById('id').value;
-            fetch(`pessoas/${id}`, {
+            fetch(`pessoas`, {
                 method: 'GET'
             })
                 .then(response => response.json())
